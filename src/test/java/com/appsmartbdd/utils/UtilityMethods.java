@@ -1,6 +1,6 @@
 package com.appsmartbdd.utils;
 
-import com.bestbuy.stepdefs.Hooks;
+import com.appsmartbdd.stepdefs.Hooks;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -51,6 +51,15 @@ public class UtilityMethods {
 		try {
 			WebDriverWait wait = new WebDriverWait(driver, timeOut);
 			wait.until(ExpectedConditions.visibilityOf(element));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	//static wait - Thread.sleep()
+	public static void staticWait(int seconds){
+		try {
+			Thread.sleep(seconds * 1000);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

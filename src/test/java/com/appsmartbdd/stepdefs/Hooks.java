@@ -15,16 +15,9 @@ public class Hooks {
 
     public static WebDriver driver;
 
-    @Before("not @ChromeProfile")
+    @Before()
     public void setUp(){
         driver = Driver.getDriver();
-        driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(Long.parseLong(PropertyReader.getProperty("implicitWait")), TimeUnit.SECONDS);
-    }
-
-    @Before("@ChromeProfile")
-    public void setUpForChromeProfile(){
-        driver = Driver.getDriverChromeProfile();
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Long.parseLong(PropertyReader.getProperty("implicitWait")), TimeUnit.SECONDS);
     }
@@ -35,7 +28,7 @@ public class Hooks {
             final byte[] screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
             scenario.attach(screenshot,"image/png","screenshot");
         }
-        Driver.quitDriver();
+//        Driver.quitDriver();
     }
 
 
