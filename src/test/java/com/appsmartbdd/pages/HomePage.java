@@ -5,11 +5,7 @@ import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 
 public class HomePage extends BasePage {
 
@@ -26,8 +22,8 @@ public class HomePage extends BasePage {
 	@FindBy(css = "div.product-empty-list-message")
 	private WebElement noItemFoundMessage;
 
-	@FindBy(css = "button[type='submit'].button-order.positive-action")
-	private WebElement confirmBtn;
+	@FindBy(css = "button[data-testid='basket-order-btn']")
+	private WebElement orderNowBtn;
 
 
 	public void searchItem(String item) {
@@ -60,20 +56,14 @@ public class HomePage extends BasePage {
 		}
 	}
 
-	//pizza i.e
-	public void selectMenu(String menu) {
-		String menuLocator = "//span[text()='" + menu + "']";
-		UtilityMethods.waitClickability(By.xpath(menuLocator), 2);
-		driver.findElement(By.xpath(menuLocator)).click();
+	//---click on order now btn
+	public void clickOrderNow(){
+		UtilityMethods.waitClickability(orderNowBtn,2);
+		orderNowBtn.click();
 	}
 
-	//click confirm
-	public void clickConfirm(){
-		UtilityMethods.waitClickability(confirmBtn,2);
-		confirmBtn.click();
-	}
+
+
 
 }
 
-
-//		foodGeneralMap.put(foodName, foodDetailsMap);

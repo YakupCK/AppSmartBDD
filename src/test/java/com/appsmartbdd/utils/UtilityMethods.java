@@ -17,7 +17,7 @@ public class UtilityMethods {
 	private static WebDriver driver = Hooks.driver;
 
 	//wait for an element to be clickable (with web element)
-	public static void waitClickability(WebElement element, int timeOut){
+	public static void waitClickability(WebElement element, int timeOut) {
 		try {
 			WebDriverWait wait = new WebDriverWait(driver, timeOut);
 			wait.until(ExpectedConditions.elementToBeClickable(element));
@@ -27,9 +27,9 @@ public class UtilityMethods {
 	}
 
 	//wait for an element to be clickable (with By locator)
-	public static void waitClickability(By locator, int timeOut){
+	public static void waitClickability(By locator, int timeOut) {
 		try {
-			WebDriverWait wait = new WebDriverWait(driver,timeOut);
+			WebDriverWait wait = new WebDriverWait(driver, timeOut);
 			wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(locator)));
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -56,8 +56,18 @@ public class UtilityMethods {
 		}
 	}
 
+	//wait for visibility of a web element
+	public static void waitForVisibility(By by, int timeOut) {
+		try {
+			WebDriverWait wait = new WebDriverWait(driver, timeOut);
+			wait.until(ExpectedConditions.visibilityOf(driver.findElement(by)));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
 	//static wait - Thread.sleep()
-	public static void staticWait(int seconds){
+	public static void wait(int seconds) {
 		try {
 			Thread.sleep(seconds * 1000);
 		} catch (Exception e) {
@@ -66,7 +76,7 @@ public class UtilityMethods {
 	}
 
 	//wait till a new window gets opened
-	public static void waitForNewWindow(){
+	public static void waitForNewWindow() {
 		try {
 			WebDriverWait wait = new WebDriverWait(driver, 4);
 			wait.until(ExpectedConditions.numberOfWindowsToBe(2));
@@ -76,7 +86,7 @@ public class UtilityMethods {
 	}
 
 	//switch to another window by passing index number
-	public static void switchToWindow(int index){
+	public static void switchToWindow(int index) {
 		try {
 			waitForNewWindow();
 			Set<String> windowHandles = driver.getWindowHandles();
@@ -88,24 +98,31 @@ public class UtilityMethods {
 	}
 
 	//wait for a web element till has a specific text
-	public static void waitForText(WebElement element, String text){
+	public static void waitForText(WebElement element, String text) {
 		try {
 			WebDriverWait wait = new WebDriverWait(driver, 6);
-			wait.until(ExpectedConditions.textToBePresentInElement(element,text));
+			wait.until(ExpectedConditions.textToBePresentInElement(element, text));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 
+	//switch to iframe
+	public static void switchToFrame(WebElement frame) {
+		WebDriverWait wait = new WebDriverWait(driver, 4);
+		wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(frame));
+//		driver.switchTo().frame(frame);
+	}
+
 	//click on a web element using JSexecutor
 	public static void clickWithJSExe(WebElement element) {
-		waitClickability(element,3);
+		waitClickability(element, 3);
 		((JavascriptExecutor) driver).executeScript("arguments[0].click();", element);
 	}
 
 	//attempt to click on a web element a couple of times
 	public static void clickManyTimes(WebElement element) {
-		waitClickability(element,3);
+		waitClickability(element, 3);
 		for (int i = 0; i < 3; i++) {
 			try {
 				element.click();
@@ -121,10 +138,29 @@ public class UtilityMethods {
 	}
 
 	//open a new tab using JSexecutor
-	public static void openNewTab(){
+	public static void openNewTab() {
 		((JavascriptExecutor) driver).executeScript("window.open();");
 	}
 
+	//scroll into an element
+	public static void scrollToElement(WebElement element) {
+		try {
+			((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
+
+	//scroll into an element
+	public static void scrollToElement(By by) {
+		try {
+			WebElement element = driver.findElement(by);
+			((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 
 
 }

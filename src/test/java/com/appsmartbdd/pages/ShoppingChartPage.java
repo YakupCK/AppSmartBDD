@@ -1,71 +1,51 @@
 package com.appsmartbdd.pages;
 
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
 
 public class ShoppingChartPage extends BasePage {
 
-	@FindBy(id = "basket-item")
-	private List<WebElement> allBasketItems;
 
 	@FindBy(css = "div#shopping-card div.order-price div.value")
 	private WebElement allTotalWithoutDiscount;
 
-	@FindBy(css = "div#shopping-card div.discount div.title")
-	private WebElement discountRate;
-
 	@FindBy(css = "div#shopping-card div.total-price div.value")
 	private WebElement allTotalWithDiscount;
 
-	List<Map<String,String>> allBasketItemsAsList;
+	@FindBy(css = "div#shopping-card div.discount div.title")
+	private WebElement discountRate;
 
 
-	public void getBasketItems(){
-		allBasketItemsAsList = new ArrayList<>();
-		Map<String, String> values = new LinkedHashMap<>();
+	public String getShoplistText(){
+		String shoppingList = driver.findElement(By.cssSelector("div.shopping-list")).getText();
+		return shoppingList;
+	}
 
-		for (int i = 0; i < allBasketItems.size(); i++) {
-			values.put("name", allBasketItems.get(i).findElement(By.cssSelector("div[class='product-name']")).getText());
-			values.put("quantity", allBasketItems.get(i).findElement(By.cssSelector("div[class='count-label-wrapper']")).getText());
-			values.put("size", allBasketItems.get(i).findElement(By.cssSelector("div[class='item-size']")).getText());
-			values.put("itemTotalPrice", allBasketItems.get(i).findElement(By.cssSelector("div[class='item-price']")).getText());
-			values.put("menuTotalPrice", allBasketItems.get(i).findElement(By.cssSelector("div[class='total-price']")).getText());
-			allBasketItemsAsList.add(values);
 
-			List<WebElement> allIngredients = allBasketItems.get(i).findElements(By.cssSelector("div[class='item-ingredient']"));
-			for (int j = 0; j < allIngredients.size(); j++) {
-				values = new LinkedHashMap<>();
-				values.put("ingredientName", allIngredients.get(j).findElement(By.cssSelector("div[class='product-price']")).getText());
-				values.put("itemTotalPrice", allIngredients.get(j).findElement(By.cssSelector("div[class='price-value']")).getText());
-				allBasketItemsAsList.add(values);
-			}
+	public void verifyOrders(String actualList, List<Map<String,Object>> expectedList){
+
+		System.out.println(actualList.replace(",","."));
+		System.out.println("allTotalWithDiscount: " + allTotalWithDiscount.getText());
+		System.out.println("allTotalWithoutDiscount: " + allTotalWithoutDiscount.getText());
+
+		for (int i = 0; i < expectedList.size()-2; i++) {
+			Assert.assertTrue(actualList.replace(",",".").contains(String.valueOf(expectedList.get(i).get("name"))));
+			Assert.assertTrue(actualList.replace(",",".").contains(String.valueOf(expectedList.get(i).get("itemTotalPrice"))));
 		}
 
-		values = new LinkedHashMap<>();
-		values.put("allTotalWithoutDiscount", allTotalWithoutDiscount.getText());
-		values.put("discountRate", discountRate.getText());
-		values.put("allTotalWithDiscount", allTotalWithDiscount.getText());
-		allBasketItemsAsList.add(values);
-
-		System.out.println("\n shoping chart is:");
-		for (int i = 0; i < allBasketItemsAsList.size(); i++) {
-			System.out.println(allBasketItemsAsList.get(i).toString());
-		}
-
+		Assert.assertEquals( new BigDecimal(String.valueOf(expectedList.get(expectedList.size() - 1).get("allTotalWithoutDiscount"))).stripTrailingZeros(), new BigDecimal(allTotalWithoutDiscount.getText().replaceAll("[^\\d,]", "").replace(",", ".")).stripTrailingZeros());
+		Assert.assertEquals( new BigDecimal(String.valueOf(expectedList.get(expectedList.size() - 1).get("allTotalWithDiscount"))).stripTrailingZeros(), new BigDecimal(allTotalWithDiscount.getText().replaceAll("[^\\d,]", "").replace(",", ".")).stripTrailingZeros());
 	}
 
 
 
-//		System.out.println("--------------");
-//		System.out.println(Driver.getDriver().findElement(By.xpath("//div[@id='basket-item']")).getText());
-//		System.out.println("--------------");
-//		System.out.println(Driver.getDriver().findElement(By.xpath("//div[@id='basket-item']//*[@class='item-ingredient']")).getText());
+
 
 
 
