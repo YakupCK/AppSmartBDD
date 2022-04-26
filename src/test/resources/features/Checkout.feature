@@ -14,8 +14,8 @@ Feature: Checkout
       | 41000                           |
       | Istanbul                        |
       | enjoypizzabremen@mailinator.com |
-      | +12099216581                    |
-      | 1 Keep it warm!                 |
+      | 12099216581                     |
+      | Please Keep it warm!            |
 
   Scenario: Verify that price on the confirmation menu is the same as shopping chart menu
     Then Total price on the confirmation menu is the same as shopping chart menu
@@ -37,23 +37,39 @@ Feature: Checkout
     And The user gets a confirmation email for order
     And Total price on the email is the same as confirmation menu
 
+
   Scenario: Verify visa payment method
     When The user selects "Online payment" payment method and proceed
-    Then The user is on the visa page
+    Then The user is on the sandbox page
     When The user enters valid credit card numbers and proceed
     Then The user lands on the confirm payment page
-    And The total amount on the confirm payment page is the same as shopping chart menu
+#    And The total amount on the confirm payment page is the same as shopping chart menu
     When The user clicks on confirm button and enters the received sms code
     Then The order is successful
+    And The user gets a confirmation email for order
 
-  Scenario: Verify paypal payment method
+
+  Scenario: Verify paypal payment method - 1
     When The user selects "PayPal" payment method and proceed
-    Then The user is on the Paypal page
-    When The user enters valid credit card numbers and proceed
+    Then The user is on the sandbox page
+
+
+  Scenario: Verify paypal payment method - 2
+    When The user selects "Online payment" payment method and proceed
+    Then The user is on the sandbox page
+    When The user clicks on PayPal btn and proceed
     Then The user lands on the confirm payment page
     And The total amount on the confirm payment page is the same as shopping chart menu
-    When The user clicks on confirm button and enters the received sms code
+    When The user clicks on confirm button and enters paypal information
     Then The order is successful
+    And The user gets a confirmation email for order
+
+
+  Scenario: Verify EC-Card payment method
+    When The user selects "EC-Card" payment method and proceed
+    Then The user is on the sandbox page
+
+
 
 
 

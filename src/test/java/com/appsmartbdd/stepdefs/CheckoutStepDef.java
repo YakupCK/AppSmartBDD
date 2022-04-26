@@ -1,7 +1,6 @@
 package com.appsmartbdd.stepdefs;
 
 import com.appsmartbdd.pages.*;
-import com.appsmartbdd.utils.UtilityMethods;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -77,19 +76,19 @@ public class CheckoutStepDef {
 		Assert.assertEquals(this.totalPrice, mailPage.getTotalPriceFromMail() );
 	}
 
-	@Then("The user is on the visa page")
-	public void the_user_is_on_the_visa_page() {
-		UtilityMethods.waitForURLContains("https://sandbox.crefopay.de/",5);
+	@Then("The user is on the sandbox page")
+	public void the_user_is_on_the_sandbox_page() {
+		sandBoxPage.verifySandboxPage();
 	}
 
 	@When("The user enters valid credit card numbers and proceed")
 	public void the_user_enters_valid_credit_card_numbers_and_proceed() {
-		sandBoxPage.enterCardInfo();
+		sandBoxPage.enterVisaCardInfo();
 	}
 
 	@Then("The user lands on the confirm payment page")
 	public void the_user_lands_on_the_confirm_payment_page() {
-		UtilityMethods.waitForURLContains("https://dev.delivery-app.app-smart.services/api3/",6);
+		confirmPaymentPage.verifyConfirmationPage();
 	}
 
 	@Then("The total amount on the confirm payment page is the same as shopping chart menu")
@@ -99,10 +98,24 @@ public class CheckoutStepDef {
 
 	@When("The user clicks on confirm button and enters the received sms code")
 	public void the_user_clicks_on_confirm_button_and_enters_the_received_sms_code() {
+		confirmPaymentPage.confirm();
+		sandBoxPage.enterSMScode();
 	}
 
 	@Then("The order is successful")
 	public void the_order_is_successful() {
+		checkoutPage.getSuccessPaymentMessage();
+	}
+
+	@When("The user clicks on PayPal btn and proceed")
+	public void the_user_clicks_on_PayPal_btn_and_proceed() {
+		sandBoxPage.clickPaypalAndProceed();
+	}
+
+	@When("The user clicks on confirm button and enters paypal information")
+	public void the_user_clicks_on_confirm_button_and_enters_paypal_information() {
+		confirmPaymentPage.confirm();
+		sandBoxPage.enterPayPalInfo();
 	}
 
 }

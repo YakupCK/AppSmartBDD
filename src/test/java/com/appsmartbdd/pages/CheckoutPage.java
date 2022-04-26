@@ -1,14 +1,11 @@
 package com.appsmartbdd.pages;
 
-import com.appsmartbdd.utils.PropertyReader;
 import com.appsmartbdd.utils.UtilityMethods;
 import org.junit.Assert;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import javax.rmi.CORBA.Util;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -26,6 +23,12 @@ public class CheckoutPage extends BasePage {
 
 	@FindBy(css = "button.button-order.positive-action")
 	private WebElement placeMyOrderBtn;
+
+	@FindBy(xpath = "//p[text()='Payment transaction failed!']")
+	private WebElement failureMessage;
+
+	@FindBy(xpath = "//p[text()='Your order was successful!']")
+	private WebElement successMessage;
 
 
 
@@ -72,13 +75,23 @@ public class CheckoutPage extends BasePage {
 	}
 
 	public void getSuccessPaymentMessage(){
+		UtilityMethods.waitForURLContains("https://hermes-dev.devteam.win/-bremen-2/1954/checkout?succes",250);
 		String locator = "//p[text()='Your order was successful!']";
 		WebElement successWE = driver.findElement(By.xpath(locator));
-		UtilityMethods.waitForVisibility(successWE,4);
+		UtilityMethods.waitForVisibility(successWE,5);
 		Assert.assertTrue(successWE.isDisplayed());
 	}
 
+	public void verifyPaymentFailureMessage(){
+		UtilityMethods.waitForVisibility(failureMessage,4);
+		Assert.assertFalse(failureMessage.isDisplayed());
+	}
 
+	public void verifyOrderSuccessful(){
+		UtilityMethods.waitForURLContains("https://hermes-dev.devteam.win/-bremen-2/1954/checkout?success",150);
+		UtilityMethods.waitForVisibility(successMessage,5);
+		Assert.assertTrue(successMessage.isDisplayed());
+	}
 
 
 

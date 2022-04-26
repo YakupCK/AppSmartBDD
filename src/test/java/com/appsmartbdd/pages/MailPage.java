@@ -11,7 +11,7 @@ import org.openqa.selenium.support.FindBy;
 public class MailPage extends BasePage {
 
 
-	@FindBy(xpath = "//*[contains(normalize-space(text()), 'order smart')]")
+	@FindBy(xpath = "//*[contains(normalize-space(text()), 'Enjoy+Pizza+Bremen')]/..//*[contains(normalize-space(text()), 'just now')]/..")
 	private WebElement lastMail;
 
 	@FindBy(css = "td#message")
