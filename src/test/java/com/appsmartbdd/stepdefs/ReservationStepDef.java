@@ -55,7 +55,12 @@ public class ReservationStepDef {
 
 	@Then("The following confirmation message should be displayed")
 	public void the_following_confirmation_message_should_be_displayed(List<String> message) {
-		reservationPage.verifyConirmationMessage(message);
+	}
+
+
+	@Then("A confirmation message should be displayed")
+	public void aConfirmationMessageShouldBeDisplayed() {
+		reservationPage.verifyConirmationMessage();
 	}
 
 	@Then("The user gets a confirmation email for reservation")
@@ -82,10 +87,6 @@ public class ReservationStepDef {
 	public void the_user_shouldn_t_reserve_a_previous_date() {
 		reservationPage.verifyPreviousDateDisabled();
 	}
-
-
-
-
 
 
 }

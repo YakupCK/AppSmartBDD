@@ -44,19 +44,6 @@ public class Driver {
 		return driver;
 	}
 
-	//just for the scenarios requiring different chrome profile
-	public static WebDriver getDriverChromeProfile() {
-		if (driver == null) {
-			WebDriverManager.chromedriver().setup();
-			ChromeOptions options = new ChromeOptions();
-			options.addArguments("user-data-dir=C:/Users/yakup/AppData/Local/Google/Chrome/User Data");
-			options.addArguments("--profile-directory=Profile 3");
-			options.addArguments("--disable-notifications");
-			options.setExperimentalOption("useAutomationExtension", false);
-			driver = new ChromeDriver(options);
-		}
-		return driver;
-	}
 
 	//quit and null the driver
 	public static void quitDriver() {

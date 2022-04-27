@@ -14,6 +14,9 @@ public class MailPage extends BasePage {
 	@FindBy(xpath = "//*[contains(normalize-space(text()), 'Enjoy+Pizza+Bremen')]/..//*[contains(normalize-space(text()), 'just now')]/..")
 	private WebElement lastMail;
 
+	@FindBy(xpath = "//*[contains(normalize-space(text()), 'Ihre Reservierung')]/..//*[contains(normalize-space(text()), 'just now')]/..")
+	private WebElement lastMailForReservation;
+
 	@FindBy(css = "td#message")
 	private WebElement mailReservationConfirmation;
 
@@ -26,8 +29,8 @@ public class MailPage extends BasePage {
 		UtilityMethods.switchToWindow(1);
 		driver.get(PropertyReader.getProperty("emailURL"));
 
-		UtilityMethods.waitClickability(lastMail,3);
-		lastMail.click();
+		UtilityMethods.waitClickability(lastMailForReservation,3);
+		lastMailForReservation.click();
 
 		UtilityMethods.switchToFrame(mailIframe);
 

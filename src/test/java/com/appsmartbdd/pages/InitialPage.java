@@ -53,12 +53,12 @@ public class InitialPage extends BasePage {
 //		}
 
 //      if night - company is closed
-//		try {
-//			UtilityMethods.waitClickability(browseTheMenuBtn,2);
-//			browseTheMenuBtn.click();
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
+		try {
+			UtilityMethods.waitClickability(browseTheMenuBtn,2);
+			browseTheMenuBtn.click();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 
 	}
 

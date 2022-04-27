@@ -16,16 +16,15 @@ Feature: Reseervation
     And The user selects 3 people
     And The user clicks on I agree check box
     And The user clicks on send button
-    Then The following confirmation message should be displayed
-    |Thank you! Your table reservation request has been sent successfully.|
+    Then A confirmation message should be displayed
     And The user gets a confirmation email for reservation
 
   Scenario: User can not make a reservation without filling the form
     When The user attempt to reserve without filling the form
     Then The user shouldn't reserve a table
 
-    Scenario: User can not reserve a previous date
-      When The user attempt to reserve a previous date
-      Then The user shouldn't reserve a previous date
+  Scenario: User can not reserve a previous date
+    When The user attempt to reserve a previous date
+    Then The user shouldn't reserve a previous date
 
 

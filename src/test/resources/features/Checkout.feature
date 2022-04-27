@@ -43,7 +43,7 @@ Feature: Checkout
     Then The user is on the sandbox page
     When The user enters valid credit card numbers and proceed
     Then The user lands on the confirm payment page
-#    And The total amount on the confirm payment page is the same as shopping chart menu
+    And The total amount on the confirm payment page is the same as shopping chart menu
     When The user clicks on confirm button and enters the received sms code
     Then The order is successful
     And The user gets a confirmation email for order

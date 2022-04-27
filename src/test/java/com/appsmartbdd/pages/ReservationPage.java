@@ -93,8 +93,8 @@ public class ReservationPage extends BasePage {
 		sendBtn.click();
 	}
 
-	public void verifyConirmationMessage(List<String> message){
-		String locator = "//*[text()='"+message.get(0)+"']";
+	public void verifyConirmationMessage(){
+		String locator = "//*[text()='Thank you! Your table reservation request has been sent successfully.']";
 		WebElement messageWE = driver.findElement(By.xpath(locator));
 		UtilityMethods.waitForVisibility(By.xpath(locator),2);
 		Assert.assertTrue(messageWE.isDisplayed());
