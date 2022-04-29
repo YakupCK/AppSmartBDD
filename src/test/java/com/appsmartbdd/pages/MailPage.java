@@ -2,6 +2,7 @@ package com.appsmartbdd.pages;
 
 import com.appsmartbdd.utils.PropertyReader;
 import com.appsmartbdd.utils.UtilityMethods;
+import org.jcp.xml.dsig.internal.dom.Utils;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -45,6 +46,7 @@ public class MailPage extends BasePage {
 	}
 
 	public void verifyOrderEmailReceived(){
+		UtilityMethods.wait(1);
 		((JavascriptExecutor)driver).executeScript("window.open();");
 
 		UtilityMethods.waitUntilNumberOfWindows(2);
