@@ -21,7 +21,7 @@ public class ConfirmPaymentPage extends BasePage {
 	}
 
 	public void verifyConfirmationPage(){
-		UtilityMethods.waitForURLContains("https://dev.delivery-app.app-smart.services/api3/",6);
+		UtilityMethods.waitForURLContains("https://dev.delivery-app.app-smart.services/api3/",20);
 		Assert.assertTrue(driver.getCurrentUrl().contains("https://dev.delivery-app.app-smart.services/api3/"));
 	}
 
