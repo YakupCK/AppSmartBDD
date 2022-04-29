@@ -138,37 +138,37 @@ public class SandBoxPage extends BasePage {
 
 	public void enterPayPalInfo(){
 		//select paypal option
-		UtilityMethods.waitClickability(paypalBtn2, 2);
+		UtilityMethods.waitClickability(paypalBtn2, 3);
 		paypalBtn2.click();
 
 		//select kredit card
 		UtilityMethods.wait(1);
-		UtilityMethods.waitClickability(kreditKarteBtn, 2);
+		UtilityMethods.waitClickability(kreditKarteBtn, 3);
 		UtilityMethods.clickWithJSExe(kreditKarteBtn);
 
 		//set card number
-		UtilityMethods.waitClickability(cardNumberPaypal, 2);
+		UtilityMethods.waitClickability(cardNumberPaypal, 3);
 		cardNumberPaypal.sendKeys(PropertyReader.getProperty("paypalCardNumber"));
 
 		//set exp date
-		UtilityMethods.waitClickability(cardExpiryPaypal, 2);
+		UtilityMethods.waitClickability(cardExpiryPaypal, 3);
 		cardExpiryPaypal.sendKeys(PropertyReader.getProperty("paypalExpDate"));
 
 		//set cvv
-		UtilityMethods.waitClickability(cvvPaypal, 2);
+		UtilityMethods.waitClickability(cvvPaypal, 3);
 		cvvPaypal.sendKeys(PropertyReader.getProperty("paypalCvv"));
 
 		//set phone
 		UtilityMethods.scrollToElement(phonePaypal);
-		UtilityMethods.waitClickability(phonePaypal, 2);
+		UtilityMethods.waitClickability(phonePaypal, 3);
 		phonePaypal.sendKeys(PropertyReader.getProperty("paypalPhoneNumber"));
 
 		//click nein danke
-		UtilityMethods.waitClickability(neinDankeBtn, 2);
+		UtilityMethods.waitClickability(neinDankeBtn, 3);
 		neinDankeBtn.click();
 
 		//click continue btn
-		UtilityMethods.waitClickability(weiterContinueBtn, 2);
+		UtilityMethods.waitClickability(weiterContinueBtn, 3);
 		weiterContinueBtn.click();
 	}
 
