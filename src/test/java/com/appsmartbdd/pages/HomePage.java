@@ -25,6 +25,11 @@ public class HomePage extends BasePage {
 	@FindBy(css = "button[data-testid='basket-order-btn']")
 	private WebElement orderNowBtn;
 
+	public void verifyNoItemFound(){
+		UtilityMethods.waitForVisibility(noItemFoundMessage,5);
+		Assert.assertTrue(noItemFoundMessage.isDisplayed());
+	}
+
 
 	public void searchItem(String item) {
 		UtilityMethods.waitClickability(By.cssSelector("svg.search-input-field-icon"), 5);

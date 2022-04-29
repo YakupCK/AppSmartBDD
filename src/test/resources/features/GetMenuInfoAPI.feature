@@ -3,29 +3,23 @@ Feature: Get Menu Info Feature
 
   Background:
     Given I connected to Base URI
-    * Endpoint is "fuIEWGcWJxqoOcFc/get-single-product/1954/"
+    * Base Path is "/api2.5/fuIEWGcWJxqoOcFc/get-single-product/1954/"
     * Content-type is "application/json"
     * Accept is "application/json"
 
-  Scenario: Make a valid reservation - Positive Scenario
-    When I send a GET request with "266286" endpoint
-    Then the status code is 200
-    * Content-type is "application/json; charset=utf-8"
-    * Success field in response body is "true"
-    * Product id field in response body is 266286
-    * Name field in response body is "Tiramisu"
+  @api
+  Scenario Outline: Get an item info Tiramisu
+    When I send a GET request with the path parameter <path param>
+    Then the status code is <status code>
+    * Content-type in response is "<content-type>"
+    * Success field in response body is "<success>"
+    * Product id field in response body is "<product id>"
+    * Name field in response body is "<product name>"
+    Examples:
+      | path param | status code | content-type                    | success | product id | product name |
+      | 266286     | 200         | application/json; charset=utf-8 | true    | 266286     | Tiramisu     |
+      | 265863     | 200         | application/json; charset=utf-8 | true    | 265863     | Pizza Salami |
 
-
-  Scenario: Make a valid reservation - Positive Scenario
-    When I send a GET request with "265863" endpoint
-    Then the status code is 200
-    * Content-type is "application/json; charset=utf-8"
-    * Success field in response body is "true"
-    * Product id field in response body is 265863
-    * Name field in response body is "Pizza Salami"
-    * Price of "26 cm" is 5.8
-    * Price of "32 cm" is 7.5
-    * Price of "36   cm" is 8.7
 
 
 

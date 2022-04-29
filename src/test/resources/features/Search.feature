@@ -23,5 +23,15 @@ Feature: Search Functionality
     Examples:
       | particularSearch |
       | Salami           |
-      | Pasta            |
-      | Salat            |
+      | pasta            |
+      | SALAT            |
+
+
+  Scenario Outline: Invalid Search
+    When The user search for "<particularSearch>"
+    Then No item is shown on the page
+
+    Examples:
+      | particularSearch |
+      | abcdefg          |
+      | &%/'             |

@@ -75,7 +75,7 @@ public class CheckoutPage extends BasePage {
 	}
 
 	public void getSuccessPaymentMessage(){
-		UtilityMethods.waitForURLContains("https://hermes-dev.devteam.win/-bremen-2/1954/checkout?succes",250);
+		UtilityMethods.waitForURLContains("https://hermes-dev.devteam.win/-bremen-2/1954/checkout",250);
 		String locator = "//p[text()='Your order was successful!']";
 		WebElement successWE = driver.findElement(By.xpath(locator));
 		UtilityMethods.waitForVisibility(successWE,5);
@@ -88,7 +88,7 @@ public class CheckoutPage extends BasePage {
 	}
 
 	public void verifyOrderSuccessful(){
-		UtilityMethods.waitForURLContains("https://hermes-dev.devteam.win/-bremen-2/1954/checkout?success",150);
+		UtilityMethods.waitForURLContains("https://hermes-dev.devteam.win/-bremen-2/1954/checkout",150);
 		UtilityMethods.waitForVisibility(successMessage,5);
 		Assert.assertTrue(successMessage.isDisplayed());
 	}

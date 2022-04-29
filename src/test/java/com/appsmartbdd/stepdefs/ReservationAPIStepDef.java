@@ -27,8 +27,8 @@ public class ReservationAPIStepDef {
 		RestAssured.baseURI = PropertyReader.getProperty("base_URI");
 	}
 
-	@Given("Endpoint is {string}")
-	public void endpoint_is(String endpoint) {
+	@Given("Base Path is {string}")
+	public void base_path_is(String endpoint) {
 		RestAssured.basePath = endpoint;
 	}
 
@@ -90,6 +90,38 @@ public class ReservationAPIStepDef {
 	public void i_send_a_POST_request_without_a_request_body() {
 		response = request.body("").post();
 	}
+
+
+	@When("I send a GET request with the path parameter {int}")
+	public void i_send_a_GET_request_with_the_path_parameter(int id) {
+		response = request.pathParam("id", id)
+				.when().get("{id}");
+	}
+
+	@Then("Product id field in response body is {int}")
+	public void product_id_field_in_response_body_is(int id) {
+		jsonPath = response.jsonPath();
+		Assert.assertEquals(jsonPath.getString("product_id"),String.valueOf(id));
+	}
+	@Then("Product id field in response body is {string}")
+	public void product_id_field_in_response_body_is(String string) {
+
+	}
+
+	@Then("Name field in response body is {string}")
+	public void name_field_in_response_body_is(String name) {
+		jsonPath = response.jsonPath();
+		Assert.assertEquals(jsonPath.getString("d.name"),name);
+	}
+
+
+	@Then("Content-type in response is {string}")
+	public void content_type_in_response_is(String contentType) {
+		Assert.assertEquals(response.contentType(), contentType);
+	}
+
+
+
 
 
 }

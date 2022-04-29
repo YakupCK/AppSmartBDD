@@ -26,6 +26,7 @@ Feature: Address and Personal Details Form
       | John      | Doe      | Jira      | Long Street | 33/15       | 41000      | Istanbul  | enjoypizzabremen@mailinator.com | 1234568876  | 1 Keep it warm!          |
       | Yakup     | Cemil    | App Smart | Hall Street | 1/a         | 56000      | Trabzon61 | enjoypizzabremen@mailinator.com | +4326785543 | 2 Can you keep it fresh? |
 
+
   Scenario Outline: Fill out the form with INVALID data - Negative Scenario
     When The user enters invalid "<FirstName>" to "First name" field
     And The user enters invalid "<LastName>" to "Last name" field
@@ -36,7 +37,6 @@ Feature: Address and Personal Details Form
     And The user enters invalid "<City>" to "City" field
     And The user enters invalid "<Email>" to "Email" field
     And The user enters invalid "<Phone>" to "Phone" field
-#    And The user enters invalid "<Comments>" to "Additional directions" field
     Then The user shouldn't proceed to checkout
 
     Examples:

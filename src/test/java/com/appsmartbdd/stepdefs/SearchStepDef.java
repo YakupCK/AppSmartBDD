@@ -36,4 +36,9 @@ public class SearchStepDef {
 		homePage.verifyPartialSearch(item);
 	}
 
+	@Then("No item is shown on the page")
+	public void no_item_is_shown_on_the_page() {
+		homePage.verifyNoItemFound();
+	}
+
 }
