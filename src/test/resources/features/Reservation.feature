@@ -1,5 +1,5 @@
 @wip
-Feature: Reseervation
+Feature: Reservation
 
   Background:
     Given The user is on the initial page
