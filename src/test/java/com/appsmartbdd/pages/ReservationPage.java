@@ -71,6 +71,7 @@ public class ReservationPage extends BasePage {
 
 		String locator = "//*[text()='"+time+"']";
 		WebElement timeWE = driver.findElement(By.xpath(locator));
+		UtilityMethods.scrollToElement(timeWE);
 		UtilityMethods.waitClickability(By.xpath(locator),2);
 		timeWE.click();
 	}
