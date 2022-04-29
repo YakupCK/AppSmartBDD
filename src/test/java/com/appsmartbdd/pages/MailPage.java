@@ -7,6 +7,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class MailPage extends BasePage {
 
@@ -26,6 +28,10 @@ public class MailPage extends BasePage {
 
 	public void verifyReservationEmailReceived(){
 		((JavascriptExecutor)driver).executeScript("window.open();");
+
+		WebDriverWait wait = new WebDriverWait(driver, 4);
+		wait.until(ExpectedConditions.numberOfWindowsToBe(2));
+
 		UtilityMethods.switchToWindow(1);
 		driver.get(PropertyReader.getProperty("emailURL"));
 
@@ -40,6 +46,9 @@ public class MailPage extends BasePage {
 
 	public void verifyOrderEmailReceived(){
 		((JavascriptExecutor)driver).executeScript("window.open();");
+
+		UtilityMethods.waitUntilNumberOfWindows(2);
+
 		UtilityMethods.switchToWindow(1);
 		driver.get(PropertyReader.getProperty("emailURL"));
 

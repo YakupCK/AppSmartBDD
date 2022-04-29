@@ -1,20 +1,6 @@
 @wip
 Feature: Select Menu
 
-#  Scenario Outline: Select Pizza with different options
-#    Given The user is on the initial page
-#    And The user clicks "Enjoy Pizza Bremen"
-#    When The user chooses "<foodName>" from "<menu>" with the size of "<size>"
-#    And adds "<ingredient1>" from "<ingredientMenu1>" by <quantity1> times
-#    And adds "<ingredient2>" from "<ingredientMenu2>" by <quantity2> times
-#    And clicks on Confirm Btn
-#    Then All the choices must be seen in Shopping Chart with the correct amount and price
-#
-#    Examples:
-#      | foodName     | menu  | size | ingredient1 | ingredientMenu1 | quantity1 | ingredient2 | ingredientMenu2 | quantity2 |
-#      | Pizza Salami | Pizza | 36   | Ananas      | Extrazutaten 1  | 3         | Mozzarella  | Extrazutaten 2  | 1         |
-
-
   Scenario Outline: Select Pizza and different menu
     Given The user is on the initial page
     And The user clicks "Enjoy Pizza Bremen"

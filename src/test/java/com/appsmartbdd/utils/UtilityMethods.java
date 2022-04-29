@@ -13,8 +13,15 @@ import java.util.Set;
 
 public class UtilityMethods {
 
+
+
 	//driver object initialized by Hooks
 	private static WebDriver driver = Hooks.driver;
+
+	public static void waitUntilNumberOfWindows(int number){
+		WebDriverWait wait = new WebDriverWait(driver, 5);
+		wait.until(ExpectedConditions.numberOfWindowsToBe(number));
+	}
 
 	//wait for an element to be clickable (with web element)
 	public static void waitClickability(WebElement element, int timeOut) {

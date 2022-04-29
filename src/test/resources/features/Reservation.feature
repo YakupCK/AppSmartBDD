@@ -12,7 +12,7 @@ Feature: Reseervation
     And The user enters "+8574673322" into "Phone" field
     And The user enters "enjoypizzabremen@mailinator.com" into "E-mail" field
     And The user selects "Today" as a date
-    And The user selects "22:00" as a time
+    And The user selects "20:00" as a time
     And The user selects 3 people
     And The user clicks on I agree check box
     And The user clicks on send button
