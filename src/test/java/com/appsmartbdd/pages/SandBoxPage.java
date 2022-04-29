@@ -131,7 +131,8 @@ public class SandBoxPage extends BasePage {
 	}
 
 	public void verifySandboxPage(){
-		UtilityMethods.waitForURLContains("https://sandbox.crefopay.de/",10);
+		UtilityMethods.wait(1);
+		UtilityMethods.waitForURLContains("https://sandbox.crefopay.de/",20);
 		Assert.assertTrue(driver.getCurrentUrl().contains("https://sandbox.crefopay.de/"));
 	}
 
